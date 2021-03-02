@@ -1,33 +1,32 @@
-# This workflow will build a Java project with Maven
-# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
-#test
+ This workflow will build a Java project with Maven
+ For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
 
-#name: Java CI with Maven
-#
-#on:
-#  push:
-#    branches: [ main ]
-#  pull_request:
-#    branches: [ main ]
-#
-#jobs:
-#  build:
-#
-#    runs-on: ubuntu-latest
-#
-#    steps:
-#    - uses: actions/checkout@v2
-#    - name: Set up JDK 11.0.8
-#      uses: actions/setup-java@v1
-#      with:
-#        java-version: 11.0.8
-#    - name: Build with Maven
-#      run: mvn -B package --file API/pom.xml
-#
-#    - name: Build and Push Docker Image
-#      uses: mr-smithers-excellent/docker-build-push@v5
-#      with:
-#        image: jbarnes3361/java-app
-#        registry: docker.io
-#        username: ${{ secrets.DOCKER_USERNAME }}
-#        password: ${{ secrets.DOCKER_PASSWORD }}
+name: Java CI with Maven
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 11.0.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11.0.8
+    - name: Build with Maven
+      run: mvn -B package --file API/pom.xml
+
+    - name: Build and Push Docker Image
+      uses: mr-smithers-excellent/docker-build-push@v5
+      with:
+        image: jbarnes3361/java-app
+        registry: docker.io
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
