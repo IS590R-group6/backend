@@ -1,3 +1,3 @@
 FROM openjdk:latest
-COPY --from=target/*.jar app.jar
+COPY API/target/*.jar app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
