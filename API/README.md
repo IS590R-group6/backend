@@ -14,13 +14,15 @@ Instructions for booting up
 3. Create the database by doing the following (should only need to do this once, even if you stop and start the container again):
 	a. docker exec -it postgresdb bin/bash
 	b. psql -U postgres
+   		*useful commands: "\l" to list databases, "\c insertDbName" to connect to a db
 	c. CREATE DATABASE postgresdb
-	d. Note: running the api in step 4 below will cause the database to update with the "person" table.  You can verify this after step 4 by coming back here and typing "\d" to show tables.
+	d. Note: running the api in step 4 below will cause the database to update with the "user" table.  
+   		You can verify this after step 4 by coming back here and typing "\c postgresdb" to connect to the db and then "\d" to show tables.
 
 
 3. Start the API by doing the following:
 	a. With the project open, click the run button in the top right corner (green triangle)
-	b. Verify it is working by going to http://localhost:8080/api/v1/person in your browser.  You should see an empty array
+	b. Verify it is working by going to http://localhost:8080/api/v1/user in your browser.  You should see an empty array
    	c. I shared a postman collection with you.  Use those requests to perform CRUD operations
 
 
