@@ -7,8 +7,8 @@ import java.util.Set;
 import com.google.common.collect.Sets;
 
 public enum ApplicationUserRole {
-	STUDENT(Sets.newHashSet()),
-	ADMIN(Sets.newHashSet(COURSE_READ, COURSE_WRITE, STUDENT_READ, STUDENT_WRITE));
+	USER(Sets.newHashSet()),
+	ADMIN(Sets.newHashSet(COURSE_READ, COURSE_WRITE, USER_READ, USER_WRITE));
 
 	private final Set<ApplicationUserPermission> permissions;
 

@@ -1,8 +1,8 @@
 package SpringAPI.security;
 
 public enum ApplicationUserPermission {
-	STUDENT_READ("student:read"),
-	STUDENT_WRITE("student:write"),
+	USER_READ("user:read"),
+	USER_WRITE("user:write"),
 	COURSE_READ("course:read"),
 	COURSE_WRITE("course:write");
 

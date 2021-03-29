@@ -1,7 +1,7 @@
 package SpringAPI.security;
 
 import static SpringAPI.security.ApplicationUserRole.ADMIN;
-import static SpringAPI.security.ApplicationUserRole.STUDENT;
+import static SpringAPI.security.ApplicationUserRole.USER;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -28,7 +28,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 						.authorizeRequests()
 						.antMatchers("/", "index", "/css/*", "/js/*").permitAll()
-						.antMatchers("/api/**").hasRole(STUDENT.name())
+						.antMatchers("/api/**").hasRole(USER.name())
 						.anyRequest()
 						.authenticated()
 						.and()
@@ -41,7 +41,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 		UserDetails annaSmithUser = User.builder()
 						.username("annasmith")
 						.password(passwordEncoder.encode("password"))
-						.roles(STUDENT.name()) // ROLE_STUDENT
+						.roles(USER.name()) // ROLE_USER
 						.build();
 		UserDetails lindaUser = User.builder()
 						.username("linda")
