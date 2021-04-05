@@ -1,6 +1,6 @@
 app:
   datasource:
-    jdbc-url: jdbc:postgresql://postgres.cb3kuckm9brc.us-east-1.rds.amazonaws.com:5432/postgres
-    username: worker
-    password: workerpassword
+    jdbc-url: jdbc:postgresql://localhost:5432/postgresdb
+    username: postgres
+    password: group6password
     pool-size: 30
