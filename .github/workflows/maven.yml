@@ -21,6 +21,28 @@ jobs:
       with:
         java-version: 11.0.8
 
+    - name: Find and Replace DB URL
+        uses: jacobtomlinson/gha-find-replace@master
+        with:
+          find: "jdbc:postgresql://localhost:5432/postgresdb"
+          replace: ${{ secrets.DB_URL }}
+          include: "src/main/resources/application.yaml"
+
+    - name: Find and Replace DB username
+        uses: jacobtomlinson/gha-find-replace@master
+        with:
+          find: "username: postgres"
+          replace: "username: " + ${{ secrets.DB_USERNAME }}
+          include: "src/main/resources/application.yaml"
+
+    - name: Find and Replace DB password
+        uses: jacobtomlinson/gha-find-replace@master
+        with:
+          find: "group6password"
+          replace: ${{ secrets.DB_PASSWORD }}
+          include: "src/main/resources/application.yaml"
+
+
     - name: Build with Maven
       run: mvn -B package --file API/pom.xml
 
