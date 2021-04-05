@@ -31,8 +31,8 @@ jobs:
       - name: Find and Replace DB username
         uses: jacobtomlinson/gha-find-replace@master
         with:
-          find: "username: postgres"
-          replace: "username: " + ${{ secrets.DB_USERNAME }}
+          find: "postgresuser"
+          replace: ${{ secrets.DB_USERNAME }}
           include: "src/main/resources/application.yaml"
 
       - name: Find and Replace DB password
