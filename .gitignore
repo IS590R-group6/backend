@@ -1,0 +1,4 @@
+ECS-Terraform/terraform.tfvars
+ECS-Terraform/terraform.tfstate.backup
+ECS-Terraform/terraform.tfstate
+ECS-Terraform/.terraform/providers/
