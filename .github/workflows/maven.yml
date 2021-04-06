@@ -48,9 +48,10 @@ jobs:
       - name: Build and Push Docker Image
         uses: mr-smithers-excellent/docker-build-push@v5
         with:
-          image: jbarnes3361/java-app
-          tags: v1, latest
-          registry: docker.io
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          image: project590
+          tags: v2, latest
+          registry: public.ecr.aws/r4x0c1i1
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
