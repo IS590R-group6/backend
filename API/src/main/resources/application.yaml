@@ -4,3 +4,7 @@ app:
     username: postgresuser
     password: group6password
     pool-size: 30
+  jwt:
+    secretKey: securesecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecure
+    tokenPrefix: "Bearer "
+    tokenExpirationAfterDays: 10
