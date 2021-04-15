@@ -9,6 +9,6 @@ public class HomeController {
 
 	@GetMapping
 	public String HealthCheck() {
-		return "API is live.";
+		return "API is healthy";
 	}
 }
