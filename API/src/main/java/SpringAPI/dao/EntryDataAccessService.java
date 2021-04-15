@@ -19,20 +19,20 @@ public class EntryDataAccessService implements EntryDao {
 	public EntryDataAccessService(JdbcTemplate jdbcTemplate) {this.jdbcTemplate = jdbcTemplate;}
 
 	@Override
-	public int insertEntry(UUID id, Entry entry) {
+	public int insertEntry(UUID id, Entry entry, UUID userId) {
 		return jdbcTemplate.update(
 				"INSERT INTO entry (entryId, userId, title, markdown, html) VALUES (?, ?, ?, ?, ?)",
 				id,
-				entry.getUserId(),
+				userId,
 				entry.getTitle(),
 				entry.getMarkdown(),
 				entry.getHtml());
 	}
 
 	@Override
-	public List<Entry> selectAllEntries() {
-		final String sql = "SELECT entryId, userId, title, markdown, html FROM entry";
-		return jdbcTemplate.query(sql, (resultSet, i) -> {
+	public List<Entry> selectAllEntries(String id) {
+		final String sql = "SELECT entryId, userId, title, markdown, html FROM entry WHERE userId = ?";
+		return jdbcTemplate.query(sql, new Object[]{UUID.fromString(id)}, (resultSet, i) -> {
 			UUID entryId = UUID.fromString( resultSet.getString("entryId"));
 			UUID userId = UUID.fromString( resultSet.getString("userId"));
 			String title = resultSet.getString("title");

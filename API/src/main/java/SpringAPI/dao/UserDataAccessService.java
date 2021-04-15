@@ -5,25 +5,33 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 import SpringAPI.model.User;
+import SpringAPI.security.ApplicationUserRole;
 
 @Repository("postgresUser")
 public class UserDataAccessService implements UserDao {
 
 	private final JdbcTemplate jdbcTemplate;
+	private final PasswordEncoder passwordEncoder;
 
 	@Autowired
-	public UserDataAccessService(JdbcTemplate jdbcTemplate) {this.jdbcTemplate = jdbcTemplate;}
+	public UserDataAccessService(JdbcTemplate jdbcTemplate,
+								 PasswordEncoder passwordEncoder) {
+		this.jdbcTemplate = jdbcTemplate;
+		this.passwordEncoder = passwordEncoder;
+	}
 
 	@Override
 	public int insertUser(UUID id, User user) {
 		return jdbcTemplate.update(
-				"INSERT INTO users (userId, name, email, password) VALUES (?, ?, ?, ?)",
+				"INSERT INTO users (userId, name, email, password, role) VALUES (?, ?, ?, ?, ?)",
 				id,
 				user.getName(),
 				user.getEmail(),
-				user.getPassword());
+				passwordEncoder.encode(user.getPassword()),
+				ApplicationUserRole.USER.name());
 	}
 
 	/*need to come back to this when our front end is finished.  Not sure what the use case will be here but I'm thinking we'll need to not show password.
