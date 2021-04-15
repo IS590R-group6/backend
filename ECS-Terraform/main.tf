@@ -259,6 +259,8 @@ resource "aws_ecs_service" "worker" {//
   cluster         = aws_ecs_cluster.ecs_cluster.id
   task_definition = aws_ecs_task_definition.task_definition.arn
   desired_count   = 1
+  deployment_minimum_healthy_percent = 0
+  deployment_maximum_percent = 100
   load_balancer {
     target_group_arn = aws_lb_target_group.my-target-group.arn
     container_name   = "worker"
