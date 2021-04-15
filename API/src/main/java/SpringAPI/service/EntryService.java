@@ -23,12 +23,12 @@ public class EntryService {
 		this.entryDao = entryDao;
 	}
 
-	public int addEntry(Entry entry) {
-		return entryDao.insertEntry(entry);
+	public int addEntry(Entry entry, UUID userId) {
+		return entryDao.insertEntry(entry, userId);
 	}
 
-	public List<Entry> getAllEntries() {
-		return entryDao.selectAllEntries();
+	public List<Entry> getAllEntries(String id) {
+		return entryDao.selectAllEntries(id);
 	}
 
 	public Optional<Entry> getEntryById(UUID id) {

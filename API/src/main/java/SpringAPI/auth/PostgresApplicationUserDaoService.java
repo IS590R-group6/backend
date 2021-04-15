@@ -35,14 +35,15 @@ public class PostgresApplicationUserDaoService implements ApplicationUserDao{
 	//from DB
 	@Override
 	public Optional<ApplicationUser> selectApplicationUserByUsername(String username) {
-		final String sql = "SELECT email, password, role FROM users WHERE email = ?";
+		final String sql = "SELECT userId, email, password, role FROM users WHERE email = ?";
 		ApplicationUser user = jdbcTemplate.queryForObject( //switch out for the one that uses sql, object, int[], class
 						sql,
 						new Object[]{username},
 						(resultSet, i) -> {
+							String id = resultSet.getString("userId");
 							ApplicationUserRole role = ApplicationUserRole.valueOf(resultSet.getString("role"));
 							String password = resultSet.getString("password");
-							return new ApplicationUser(username, password, role.getGrantedAuthorities(), true, true, true, true);
+							return new ApplicationUser(id, password, role.getGrantedAuthorities(), true, true, true, true);
 						});
 		return Optional.ofNullable(user);
 	}

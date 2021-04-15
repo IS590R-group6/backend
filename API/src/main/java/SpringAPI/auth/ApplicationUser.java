@@ -3,7 +3,9 @@ package SpringAPI.auth;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -11,23 +13,23 @@ public class ApplicationUser implements UserDetails {
 
 	private final Set<? extends GrantedAuthority> grantedAuthorities;
 	private final String password;
-	private final String username;
 	private final boolean isAccountNonExpired;
 	private final boolean isAccountNonLocked;
 	private final boolean isCredentialsNonExpired;
 	private final boolean isEnabled;
+	private final String id;
 
 	public ApplicationUser(
-					String username,
+					String id,
 					String password,
 					Set<? extends GrantedAuthority> grantedAuthorities,
 					boolean isAccountNonExpired,
 					boolean isAccountNonLocked,
 					boolean isCredentialsNonExpired,
 					boolean isEnabled) {
+		this.id = id;
 		this.grantedAuthorities = grantedAuthorities;
 		this.password = password;
-		this.username = username;
 		this.isAccountNonExpired = isAccountNonExpired;
 		this.isAccountNonLocked = isAccountNonLocked;
 		this.isCredentialsNonExpired = isCredentialsNonExpired;
@@ -43,7 +45,7 @@ public class ApplicationUser implements UserDetails {
 	}
 
 	@Override public String getUsername() {
-		return username;
+		return id;
 	}
 
 	@Override public boolean isAccountNonExpired() {
