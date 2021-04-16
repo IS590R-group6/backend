@@ -1,6 +1,10 @@
 app:
   datasource:
-    jdbc-url: jdbc:postgresql://localhost:5432/postgresnew
+    jdbc-url: jdbc:tc:postgresql:12:///postgresdb
     username: postgres
     password: group6password
     pool-size: 30
+  jwt:
+    secretKey: securesecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecure
+    tokenPrefix: "Bearer "
+    tokenExpirationAfterDays: 10

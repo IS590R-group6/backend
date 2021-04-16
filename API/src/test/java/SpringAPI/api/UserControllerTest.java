@@ -1,7 +1,9 @@
 package SpringAPI.api;
 
 import static SpringAPI.api.TestingUtils.asJsonString;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.formLogin;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.*;
 import java.util.UUID;
 import javax.swing.text.StringContent;
 
@@ -13,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -26,7 +29,7 @@ import SpringAPI.model.User;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 				//@WithUserDetails("test")
 
-
+@WithUserDetails
 public class UserControllerTest {
 
 	private WebApplicationContext context;
@@ -58,7 +61,9 @@ public class UserControllerTest {
 			//.andExpect(MockMvcResultMatchers.jsonPath("$.id").exists())
 			//.andReturn();
 			//.andExpect(MockMvcResultMatchers.jsonPath("$.name").value(testUser.getName()));
+
 	}
+
 
 	@Test
 	public void getAllUsers() throws Exception{
