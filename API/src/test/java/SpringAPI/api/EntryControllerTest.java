@@ -27,7 +27,7 @@ class EntryControllerTest {
 
 	private WebApplicationContext context;
 	private MockMvc mvc;
-	private String entryID = "df97b038-10ac-45c8-bfea-d1635c9b46bb";
+	private String entryID = "ce1b9da2-653e-4939-b477-816536ca4664";
 
 	@Autowired
 	public EntryControllerTest(WebApplicationContext context) {
