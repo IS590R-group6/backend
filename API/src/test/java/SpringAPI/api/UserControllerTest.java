@@ -34,6 +34,7 @@ public class UserControllerTest {
 
 	private WebApplicationContext context;
 	private MockMvc mvc;
+	private String userID = "72e4094e-83a8-4f6b-915e-f287a9a6b499";
 
 	@Autowired
 	public UserControllerTest(WebApplicationContext context) {
@@ -84,7 +85,7 @@ public class UserControllerTest {
 	@Test
 	public void getUserById() throws Exception{
 		mvc.perform( MockMvcRequestBuilders
-			.get("/api/v1/user/{id}", "9fc3861b-af2b-4664-a928-4a5ef03ba516")
+			.get("/api/v1/user/{id}", userID)
 			.contentType(MediaType.APPLICATION_JSON)
 			.accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk());
@@ -100,7 +101,7 @@ public class UserControllerTest {
 		);
 
 		mvc.perform( MockMvcRequestBuilders
-			.put("/api/v1/user/{id}", "9fc3861b-af2b-4664-a928-4a5ef03ba516")
+			.put("/api/v1/user/{id}", userID)
 			.content(asJsonString(testUser2))
 			.contentType(MediaType.APPLICATION_JSON)
 			.accept(MediaType.APPLICATION_JSON))
@@ -110,7 +111,7 @@ public class UserControllerTest {
 	@Test
 	public void deleteUserById() throws Exception{
 		mvc.perform( MockMvcRequestBuilders
-						.delete("/api/v1/user/{id}", "9fc3861b-af2b-4664-a928-4a5ef03ba516")
+						.delete("/api/v1/user/{id}", userID)
 						.contentType(MediaType.APPLICATION_JSON)
 						.accept(MediaType.APPLICATION_JSON))
 						.andExpect(status().isOk());

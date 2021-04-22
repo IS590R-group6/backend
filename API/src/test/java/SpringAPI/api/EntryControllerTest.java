@@ -27,6 +27,7 @@ class EntryControllerTest {
 
 	private WebApplicationContext context;
 	private MockMvc mvc;
+	private String entryID = "df97b038-10ac-45c8-bfea-d1635c9b46bb";
 
 	@Autowired
 	public EntryControllerTest(WebApplicationContext context) {
@@ -68,7 +69,7 @@ class EntryControllerTest {
 	@Test
 	void getEntryById() throws Exception{
 		mvc.perform( MockMvcRequestBuilders
-			.get("/api/v1/entry/{id}", "8386df00-0f2b-43d1-aa61-2f4ab6ab1ebc")
+			.get("/api/v1/entry/{id}", entryID)
 			.contentType(MediaType.APPLICATION_JSON)
 			.accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk());
@@ -86,7 +87,7 @@ class EntryControllerTest {
 		);
 
 		this.mvc.perform( MockMvcRequestBuilders
-				.put("/api/v1/entry/{id}", "8386df00-0f2b-43d1-aa61-2f4ab6ab1ebc")
+				.put("/api/v1/entry/{id}", entryID)
 				.content(asJsonString(testEntry2))
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))
@@ -98,7 +99,7 @@ class EntryControllerTest {
 	@Test
 	void deleteEntryById() throws Exception{
 		mvc.perform( MockMvcRequestBuilders
-						.delete("/api/v1/entry/{id}","8386df00-0f2b-43d1-aa61-2f4ab6ab1ebc")
+						.delete("/api/v1/entry/{id}",entryID)
 						.contentType(MediaType.APPLICATION_JSON)
 						.accept(MediaType.APPLICATION_JSON))
 						.andExpect(status().isOk());

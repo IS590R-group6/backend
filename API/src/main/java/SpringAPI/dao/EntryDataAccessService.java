@@ -64,8 +64,8 @@ public class EntryDataAccessService implements EntryDao {
 		if (entryMaybe.isEmpty()) {
 			return 0;
 		}
-		String sql = "UPDATE entry SET userId = COALESCE(?, userId), title = COALESCE(?, title), markdown = COALESCE(?, markdown), html = COALESCE(?, html) WHERE entryId = ?";
-		Object[] args = new Object[] {entry.getUserId(), entry.getTitle(), entry.getMarkdown(), entry.getHtml(), id};
+		String sql = "UPDATE entry SET title = COALESCE(?, title), markdown = COALESCE(?, markdown), html = COALESCE(?, html) WHERE entryId = ?";
+		Object[] args = new Object[] {entry.getTitle(), entry.getMarkdown(), entry.getHtml(), id};
 		return jdbcTemplate.update(sql,args);
 	}
 
