@@ -38,17 +38,26 @@ public class EntryController {
 	@PostMapping
 	public void addEntry(@Valid @NonNull @RequestBody Entry entry) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		UUID principal = UUID.fromString((String) authentication.getPrincipal());
 
-		entryService.addEntry(entry, principal);
+		UUID id;
+		if (authentication == null) {
+			id = UUID.fromString("658ef391-8ce6-4c11-8ffb-5c69c329e58d");
+		}
+		id = UUID.fromString((String) authentication.getPrincipal());
+
+		entryService.addEntry(entry, id);
 	}
 
 	@GetMapping
 	public List<Entry> getAllEntries() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		String principal = (String) authentication.getPrincipal();
+		String id;
+		if (authentication == null) {
+			id = "658ef391-8ce6-4c11-8ffb-5c69c329e58d";
+		}
+		id = (String) authentication.getPrincipal();
 
-		return entryService.getAllEntries(principal);
+		return entryService.getAllEntries(id);
 	}
 
 	@GetMapping(path = "{id}")
