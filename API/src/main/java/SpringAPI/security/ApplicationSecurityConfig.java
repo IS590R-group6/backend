@@ -3,6 +3,8 @@ package SpringAPI.security;
 import static SpringAPI.security.ApplicationUserRole.USER;
 import static SpringAPI.security.ApplicationUserRole.ADMIN;
 
+import java.util.Arrays;
+
 import javax.crypto.SecretKey;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import SpringAPI.auth.ApplicationUserService;
 import SpringAPI.jwt.JwtConfig;
@@ -45,6 +50,8 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override protected void configure(HttpSecurity http) throws Exception {
 		http
+						.cors()
+						.and()
 						.csrf().disable()
 						.sessionManagement()
 							.sessionCreationPolicy(SessionCreationPolicy.ALWAYS.STATELESS)
@@ -69,5 +76,21 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 		provider.setPasswordEncoder(passwordEncoder);
 		provider.setUserDetailsService(applicationUserService);
 		return provider;
+	}
+
+	@Bean
+	public CorsConfigurationSource corsConfigurationSource() {
+		final CorsConfiguration configuration = new CorsConfiguration();
+		configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000","http://d1k0icii6pntqc.cloudfront.net"));
+		configuration.setAllowedMethods(Arrays.asList("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH"));
+		// When using setAllowCredentials(true), we cannot use '*' as the allowed origin header
+		configuration.setAllowCredentials(true);
+		// setAllowed is important! Without it, Options preflight request
+		configuration.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
+		// Needed so that client can access the authorization headers
+		configuration.setExposedHeaders(Arrays.asList("Authorization"));
+		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", configuration);
+		return source;
 	}
 }

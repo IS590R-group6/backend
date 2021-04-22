@@ -1,0 +1,6 @@
+app:
+  datasource:
+    jdbc-url: jdbc:postgresql://localhost:5432/postgresnew
+    username: postgres
+    password: group6password
+    pool-size: 30
