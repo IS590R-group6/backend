@@ -40,6 +40,13 @@ jobs:
           replace: ${{ secrets.DB_PASSWORD }}
           include: "application.yaml"
 
+      - name: Find and Replace JWT SecretKey
+          uses: jacobtomlinson/gha-find-replace@master
+          with:
+            find: "securesecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecure"
+            replace: ${{ secrets.JWT_SecretKey }}
+            include: "src/main/resources/application.yaml"
+
       - name: Build with Maven
         run: mvn -B package --file API/pom.xml
 
