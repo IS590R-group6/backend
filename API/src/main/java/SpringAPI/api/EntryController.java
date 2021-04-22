@@ -43,7 +43,10 @@ public class EntryController {
 		if (authentication == null) {
 			id = UUID.fromString("658ef391-8ce6-4c11-8ffb-5c69c329e58d");
 		}
-		id = UUID.fromString((String) authentication.getPrincipal());
+		else{
+			id = UUID.fromString((String) authentication.getPrincipal());
+		}
+
 
 		entryService.addEntry(entry, id);
 	}
@@ -55,7 +58,10 @@ public class EntryController {
 		if (authentication == null) {
 			id = "658ef391-8ce6-4c11-8ffb-5c69c329e58d";
 		}
-		id = (String) authentication.getPrincipal();
+		else {
+			id = (String) authentication.getPrincipal();
+		}
+
 
 		return entryService.getAllEntries(id);
 	}

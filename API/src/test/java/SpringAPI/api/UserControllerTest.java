@@ -34,7 +34,7 @@ public class UserControllerTest {
 
 	private WebApplicationContext context;
 	private MockMvc mvc;
-	private String userID = "85bb6c21-9577-4dbf-81ab-53755e5bda49";
+	private String userID = "b9db1954-a62f-4b76-aa11-aa7fee488b70";
 
 	@Autowired
 	public UserControllerTest(WebApplicationContext context) {
