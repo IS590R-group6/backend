@@ -1,7 +1,7 @@
 app:
   datasource:
-    jdbc-url: jdbc:tc:postgresql:12:///postgresdb
-    username: postgres
+    jdbc-url: jdbc:postgresql://localhost:5432/postgresdb
+    username: postgresuser
     password: group6password
     pool-size: 30
   jwt:
