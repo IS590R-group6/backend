@@ -29,7 +29,7 @@ import SpringAPI.model.User;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 				//@WithUserDetails("test")
 
-@WithUserDetails
+//@WithUserDetails
 public class UserControllerTest {
 
 	private WebApplicationContext context;
